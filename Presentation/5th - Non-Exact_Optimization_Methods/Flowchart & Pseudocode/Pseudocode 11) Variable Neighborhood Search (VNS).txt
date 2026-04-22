@@ -1,0 +1,27 @@
+VNS():
+
+    s = InitialSolution()
+    Best = s
+
+    while not StopCondition() do
+        k = 1
+
+        while k <= kmax do
+            s2 = Shake(s, k)
+            s3 = LocalSearch(s2)
+
+            if Better(s3, s) then
+                s = s3
+
+                if Better(s, Best) then
+                    Best = s
+                end if
+
+                k = 1
+            else
+                k = k + 1
+            end if
+        end while
+    end while
+
+    return Best

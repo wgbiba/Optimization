@@ -1,0 +1,24 @@
+AntColonyOptimization():
+
+    InitializePheromones()
+    Best = null
+
+    while not StopCondition() do
+        Solutions = empty list
+
+        for each ant do
+            s = ConstructSolutionUsingPheromones()
+            add s to Solutions
+        end for
+
+        sBestIter = BestSolution(Solutions)
+
+        if Best is null or Better(sBestIter, Best) then
+            Best = sBestIter
+        end if
+
+        EvaporatePheromones()
+        DepositPheromones(Solutions, Best)
+    end while
+
+    return Best

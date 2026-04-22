@@ -1,0 +1,16 @@
+NearestNeighborTSP(D, s):
+
+    Tour = [s]
+    Current = s
+    Unvisited = all nodes except s
+
+    while Unvisited is not empty do
+        next = node in Unvisited with minimum distance from Current
+        append next to Tour
+        remove next from Unvisited
+        Current = next
+    end while
+
+    append s to Tour
+
+    return Tour

@@ -1,0 +1,41 @@
+2) Generic Branch-and-Bound Algorithm for Maximization Problems
+
+BranchAndBound_Maximization(problem):
+
+    create root node
+    root.bound = ComputeBound(root)
+
+    bestSolution = null
+    bestValue = -infinity
+
+    LiveNodes = empty collection
+    Insert(LiveNodes, root)
+
+    while LiveNodes is not empty do
+
+        node = SelectNode(LiveNodes)
+
+        if node.bound <= bestValue then
+            continue    // prune node
+
+        if IsCompleteSolution(node) and IsFeasible(node) then
+            if Value(node) > bestValue then
+                bestSolution = node
+                bestValue = Value(node)
+        else
+            children = Branch(node)
+
+            for each child in children do
+                if IsFeasible(child) then
+                    child.bound = ComputeBound(child)
+
+                    if child.bound > bestValue then
+                        Insert(LiveNodes, child)
+                    end if
+                end if
+            end for
+        end if
+
+    end while
+
+    return bestSolution, bestValue

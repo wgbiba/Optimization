@@ -1,0 +1,11 @@
+ChristofidesTSP(G):
+
+    T = MinimumSpanningTree(G)
+    O = set of odd-degree vertices in T
+    M = MinimumWeightPerfectMatching(G induced by O)
+
+    H = multigraph formed by edges of T and M
+    P = EulerTour(H)
+    Tour = ShortcutRepeatedVertices(P)
+
+    return Tour

@@ -1,0 +1,20 @@
+TabuSearch():
+
+    s = InitialSolution()
+    Best = s
+    TabuList = empty
+
+    while not StopCondition() do
+        N = Neighborhood(s)
+
+        s2 = BestAdmissibleNeighbor(N, TabuList)
+
+        s = s2
+        UpdateTabuList(TabuList, MoveUsed(s2))
+
+        if Better(s, Best) then
+            Best = s
+        end if
+    end while
+
+    return Best

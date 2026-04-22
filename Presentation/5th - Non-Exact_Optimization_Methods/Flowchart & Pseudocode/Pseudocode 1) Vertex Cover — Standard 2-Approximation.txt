@@ -1,0 +1,13 @@
+VertexCover2Approx(G = (V, E)):
+
+    C = empty set
+
+    while E is not empty do
+        choose any edge (u, v) from E
+        add u to C
+        add v to C
+
+        remove from E every edge incident to u or v
+    end while
+
+    return C

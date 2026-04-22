@@ -1,0 +1,26 @@
+SimulatedAnnealing():
+
+    s = InitialSolution()
+    Best = s
+    T = T0
+
+    while not StopCondition(T, s) do
+        s2 = RandomNeighbor(s)
+
+        if Better(s2, s) then
+            s = s2
+        else
+            delta = ObjectiveDifference(s2, s)
+            if Random(0,1) < AcceptanceProbability(delta, T) then
+                s = s2
+            end if
+        end if
+
+        if Better(s, Best) then
+            Best = s
+        end if
+
+        T = CoolingSchedule(T)
+    end while
+
+    return Best

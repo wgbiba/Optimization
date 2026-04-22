@@ -1,0 +1,25 @@
+KnapsackDP(weights, values, n, W):
+
+    create table K[0..n][0..W]
+
+    for i = 0 to n do
+        for c = 0 to W do
+
+            if i == 0 or c == 0 then
+                K[i][c] = 0
+
+            else if weights[i] <= c then
+                K[i][c] = max(
+                    K[i - 1][c],
+                    values[i] + K[i - 1][c - weights[i]]
+                )
+
+            else
+                K[i][c] = K[i - 1][c]
+
+            end if
+
+        end for
+    end for
+
+    return K[n][W]

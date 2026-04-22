@@ -1,0 +1,8 @@
+DoubleTreeTSP(G):
+
+    T = MinimumSpanningTree(G)
+    H = multigraph formed by duplicating every edge of T
+    P = EulerTour(H)
+    Tour = ShortcutRepeatedVertices(P)
+
+    return Tour

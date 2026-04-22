@@ -1,0 +1,20 @@
+IteratedLocalSearch():
+
+    s = InitialSolution()
+    s = LocalSearch(s)
+    Best = s
+
+    while not StopCondition() do
+        s2 = Perturb(s)
+        s2 = LocalSearch(s2)
+
+        if Accept(s2, s) then
+            s = s2
+        end if
+
+        if Better(s, Best) then
+            Best = s
+        end if
+    end while
+
+    return Best

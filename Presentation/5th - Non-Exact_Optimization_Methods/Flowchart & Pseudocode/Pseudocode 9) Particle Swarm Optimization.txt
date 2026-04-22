@@ -1,0 +1,27 @@
+ParticleSwarmOptimization():
+
+    InitializeParticles()
+    InitializeVelocities()
+
+    for each particle i do
+        pBest[i] = position[i]
+    end for
+
+    gBest = best particle among all pBest
+
+    while not StopCondition() do
+        for each particle i do
+            velocity[i] = UpdateVelocity(velocity[i], position[i], pBest[i], gBest)
+            position[i] = UpdatePosition(position[i], velocity[i])
+
+            if Better(position[i], pBest[i]) then
+                pBest[i] = position[i]
+            end if
+
+            if Better(pBest[i], gBest) then
+                gBest = pBest[i]
+            end if
+        end for
+    end while
+
+    return gBest

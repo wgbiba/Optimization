@@ -1,0 +1,14 @@
+GeneticAlgorithm():
+
+    P = InitializePopulation()
+    Evaluate(P)
+
+    while not StopCondition() do
+        Parents = SelectParents(P)
+        Offspring = Crossover(Parents)
+        Offspring = Mutate(Offspring)
+        Evaluate(Offspring)
+        P = Replacement(P, Offspring)
+    end while
+
+    return BestIndividual(P)

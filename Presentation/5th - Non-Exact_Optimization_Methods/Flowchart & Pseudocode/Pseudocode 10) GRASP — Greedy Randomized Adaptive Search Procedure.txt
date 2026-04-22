@@ -1,0 +1,14 @@
+GRASP():
+
+    Best = null
+
+    while not StopCondition() do
+        s = GreedyRandomizedConstruction()
+        s = LocalSearch(s)
+
+        if Best is null or Better(s, Best) then
+            Best = s
+        end if
+    end while
+
+    return Best

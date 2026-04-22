@@ -1,0 +1,32 @@
+BranchAndBoundMax(problem):
+
+    create root node
+    Active = {root}
+    bestValue = -infinity
+    bestSolution = none
+
+    while Active is not empty do
+        node = SelectNode(Active)
+        remove node from Active
+
+        solve LP relaxation of node
+        let UB be its objective value
+
+        if node is infeasible or UB <= bestValue then
+            continue
+        end if
+
+        if LP solution is integer-feasible then
+            if UB > bestValue then
+                bestValue = UB
+                bestSolution = LP solution
+            end if
+        else
+            choose a fractional variable xj
+            create child 1 with xj <= floor(xj*)
+            create child 2 with xj >= ceil(xj*)
+            add both children to Active
+        end if
+    end while
+
+    return bestSolution
